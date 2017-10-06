@@ -11,11 +11,14 @@
     <body>
         <br/>
         <div class="container">
-            <ul class="list-group">
-                <li class="list-group-item"><a href="{% url 'nd:phrases' %}">Phrases</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:dtc_list' %}">View All DTCs</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:dtc_search' %}">Search DTCs</a></li>
-            </ul>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="query">Search DTCs</label>
+                    <input type="text" class="form-control" id="query" name="query" placeholder="Enter DTC"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
