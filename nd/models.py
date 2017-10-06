@@ -7,6 +7,7 @@ class Cause(models.Model):
 
 class DTC(models.Model):
     code = models.CharField(max_length=20, primary_key=True)
+    bmw_code = models.CharField(max_length=20)
     causes = models.ManyToManyField(Cause)
     def __str__(self):
         return '{}'.format(self.code)

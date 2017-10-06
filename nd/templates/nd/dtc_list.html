@@ -14,11 +14,13 @@
             <table class="table">
                 <tr>
                     <th>DTC</th>
+                    <th>BMW DTC</th>
                     <th>Causes</th>
                 </tr>
                 {% for obj in object_list %}
                 <tr>
                     <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.code }}</a></td>
+                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.bmw_code }}</a></td>
                     <td>{{ obj.count }}</td>
                 </tr>
                 {% endfor %}
