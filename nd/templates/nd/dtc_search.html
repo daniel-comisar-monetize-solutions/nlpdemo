@@ -9,8 +9,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     </head>
     <body>
-        <br/>
         <div class="container">
+            <br/>
+            <a href="{% url 'nd:index' %}" class="btn btn-info" role="button">Back</a>
+            <br/>
+            <br/>
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
