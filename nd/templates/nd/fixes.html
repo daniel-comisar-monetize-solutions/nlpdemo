@@ -14,26 +14,16 @@
             <a href="{% url 'nd:index' %}" class="btn btn-info" role="button">Back</a>
             <br/>
             <br/>
-            {% if object_list %}
             <table class="table">
                 <tr>
-                    <th>DTC</th>
-                    <th>BMW DTC</th>
-                    <th>Causes</th>
-                    <th>Fixes</th>
+                    <th>Repair Procedures</th>
                 </tr>
-                {% for obj in object_list %}
+                {% for fix in object_list %}
                 <tr>
-                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.code }}</a></td>
-                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.bmw_code }}</a></td>
-                    <td>{{ obj.causes.all|length }}</td>
-                    <td>{{ obj.fixes.all|length }}</td>
+                    <td>{{ fix.text }}</td>
                 </tr>
                 {% endfor %}
             </table>
-            {% else %}
-            <h4>No DTCs found.</h4>
-            {% endif %}
         </div>
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -6,19 +6,27 @@ class Cause(models.Model):
         return '{}'.format(self.text)
 
 class DTC(models.Model):
-    code = models.CharField(max_length=20, primary_key=True)
     bmw_code = models.CharField(max_length=20)
     causes = models.ManyToManyField(Cause)
+    code = models.CharField(max_length=20, primary_key=True)
+    fixes = models.ManyToManyField('Fix')
     def __str__(self):
         return '{}'.format(self.code)
 
+class Fix(models.Model):
+    text = models.CharField(max_length=400, primary_key=True)
+    def __str__(self):
+        return '{}'.format(self.text)
+
 class Phrase(models.Model):
-    text = models.CharField(max_length=200)
     file = models.CharField(max_length=200)
     page = models.IntegerField()
-    class Meta:
-        indexes = [models.Index(fields=['text']),
-                   models.Index(fields=['file']),
-                   models.Index(fields=['page'])]
+    text = models.CharField(max_length=200)
     def __str__(self):
-        return 'Phrase({}, {}, {})'.format(self.text, self.file, self.page)
+        return '{}'.format(self.text)
+
+class ReferenceFix(models.Model):
+    code = models.CharField(max_length=40, primary_key=True)
+    text = models.CharField(max_length=400)
+    def __str__(self):
+        return '{}'.format(self.text)

@@ -12,6 +12,7 @@
         <br/>
         <div class="container">
             <h1>DTC {{ object.code }} - BMW DTC {{ object.bmw_code }}</h1>
+            <br/>
             <table class="table">
                 <tr>
                     <th>Possible Causes</th>
@@ -19,6 +20,17 @@
                 {% for cause in object.causes.all %}
                 <tr>
                     <td>{{ cause }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br/>
+            <table class="table">
+                <tr>
+                    <th>Repair Procedures</th>
+                </tr>
+                {% for fix in object.fixes.all %}
+                <tr>
+                    <td>{{ fix }}</td>
                 </tr>
                 {% endfor %}
             </table>
