@@ -1,4 +1,4 @@
-# sudo apt install -y python3-dev
+# sudo apt install -y poppler-utils python3-dev
 beautifulsoup4==4.6.0
 django==1.11.5
 gunicorn==19.7.1
