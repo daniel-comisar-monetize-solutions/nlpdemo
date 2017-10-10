@@ -4,9 +4,13 @@ from django.db.models import Count, Q
 from django.shortcuts import redirect, reverse
 from django.views import generic
 
-class CauseView(generic.ListView):
+class CauseDetail(generic.DetailView):
     model = Cause
-    template_name = 'nd/causes.html'
+    template_name = 'nd/cause_detail.html'
+
+class CauseList(generic.ListView):
+    model = Cause
+    template_name = 'nd/cause_list.html'
 
 class DtcDetail(generic.DetailView):
     model = DTC
@@ -29,9 +33,13 @@ class DtcSearchView(generic.edit.FormView):
     def form_valid(self, form):
         return redirect('{}?q={}'.format(reverse('nd:dtc_list'), form.cleaned_data['query']))
 
-class FixView(generic.ListView):
+class FixDetail(generic.DetailView):
     model = Fix
-    template_name = 'nd/fixes.html'
+    template_name = 'nd/fix_detail.html'
+
+class FixList(generic.ListView):
+    model = Fix
+    template_name = 'nd/fix_list.html'
 
 class IndexView(generic.TemplateView):
     template_name = 'nd/index.html'

@@ -30,7 +30,9 @@ for dtc_node in soup.find_all(has_regex(dtc_regex)):
     for cause in cause_list:
         cur.execute('INSERT OR IGNORE INTO nd_cause (text) VALUES (?)', (cause,))
         counts['cause'] = counts.get('cause', 0) + cur.rowcount
-        cur.execute('INSERT OR IGNORE INTO nd_dtc_causes (dtc_id, cause_id) VALUES (?, ?)', (code, cause))
+        cur.execute('SELECT id FROM nd_cause WHERE text = ?', (cause,))
+        cause_id = cur.fetchone()[0]
+        cur.execute('INSERT OR IGNORE INTO nd_dtc_causes (dtc_id, cause_id) VALUES (?, ?)', (code, cause_id))
         counts['both'] = counts.get('both', 0) + cur.rowcount
 
 print('{} codes, {} causes, and {} relations added'.format(counts.get('dtc', 0), counts.get('cause', 0), counts.get('both', 0)))

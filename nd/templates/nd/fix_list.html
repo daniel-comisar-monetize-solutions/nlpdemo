@@ -20,7 +20,7 @@
                 </tr>
                 {% for fix in object_list %}
                 <tr>
-                    <td>{{ fix.text }}</td>
+                    <td><a href="{% url 'nd:fix_detail' fix.id %}">{{ fix.text }}</a></td>
                 </tr>
                 {% endfor %}
             </table>

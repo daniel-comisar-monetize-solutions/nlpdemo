@@ -1,6 +1,6 @@
 import re
 
-dtc_regex = re.compile('DTC ([A-Za-z][0-9]{4,5}).*BMW DTC (\w{6})')
+dtc_regex = re.compile('DTC ([A-Za-z]\d{4,5}).*BMW DTC (\w{6})')
 
 def has_regex(regex):
     return lambda tag: regex.search(tag.string) if tag.string else False

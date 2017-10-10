@@ -1,7 +1,7 @@
 from django.db import models
 
 class Cause(models.Model):
-    text = models.CharField(max_length=200, primary_key=True)
+    text = models.CharField(max_length=200, unique=True)
     def __str__(self):
         return '{}'.format(self.text)
 
@@ -14,7 +14,7 @@ class DTC(models.Model):
         return '{}'.format(self.code)
 
 class Fix(models.Model):
-    text = models.CharField(max_length=400, primary_key=True)
+    text = models.CharField(max_length=400, unique=True)
     def __str__(self):
         return '{}'.format(self.text)
 
