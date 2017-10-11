@@ -12,5 +12,7 @@ urlpatterns = [
     url(r'^dtc/(?P<pk>[A-Za-z]\d{4,5})$', views.DtcDetail.as_view(), name='dtc_detail'),
     url(r'^fix$', views.FixList.as_view(), name='fix_list'),
     url(r'^fix/(?P<pk>\d+)$', views.FixDetail.as_view(), name='fix_detail'),
-    url(r'^phrases$', views.PhraseView.as_view(), name='phrases'),
+    url(r'^part$', views.PartList.as_view(), name='part_list'),
+    url(r'^part/(?P<pk>\d+)$', views.PartDetail.as_view(), name='part_detail'),
+    url(r'^phrase$', views.PhraseView.as_view(), name='phrases'),
 ]

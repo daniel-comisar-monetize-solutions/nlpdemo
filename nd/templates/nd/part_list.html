@@ -4,21 +4,32 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     </head>
     <body>
-        <br/>
         <div class="container">
-            <ul class="list-group">
-                <li class="list-group-item"><a href="{% url 'nd:phrases' %}">Phrases</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:dtc_list' %}">View All DTCs</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:dtc_search' %}">Search DTCs</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:cause_list' %}">Possible Causes</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:fix_list' %}">Repair Procedures</a></li>
-                <li class="list-group-item"><a href="{% url 'nd:part_list' %}">Part Locations</a></li>
-            </ul>
+            <br/>
+            <a href="{% url 'nd:index' %}" class="btn btn-info" role="button">Home</a>
+            <br/>
+            <br/>
+            <table class="table">
+                <tr>
+                    <th>Part Locations</th>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                </tr>
+                {% for part in object_list %}
+                <tr>
+                    <td><a href="{% url 'nd:part_detail' part.id %}">{{ part.name }}</a></td>
+                    <td>
+                        {% load static %}
+                        <img style="max-width: 200px" src="{% static 'nd/'|add:part.image %}"/>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

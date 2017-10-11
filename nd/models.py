@@ -18,6 +18,19 @@ class Fix(models.Model):
     def __str__(self):
         return '{}'.format(self.text)
 
+class Part(models.Model):
+    image = models.CharField(max_length=20)
+    name = models.CharField(max_length=200, unique=True)
+    def __str__(self):
+        return '{}'.format(self.name)
+
+class PartLabel(models.Model):
+    label = models.CharField(max_length=20)
+    part = models.ForeignKey(Part)
+    text = models.CharField(max_length=200)
+    def __str__(self):
+        return '{}'.format(self.text)
+
 class Phrase(models.Model):
     file = models.CharField(max_length=200)
     page = models.IntegerField()

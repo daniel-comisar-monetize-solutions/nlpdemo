@@ -1,4 +1,4 @@
-from .models import Cause, DTC, Fix, Phrase
+from .models import Cause, DTC, Fix, Part, Phrase
 from django import forms
 from django.db.models import Count, Q
 from django.shortcuts import redirect, reverse
@@ -40,6 +40,14 @@ class FixDetail(generic.DetailView):
 class FixList(generic.ListView):
     model = Fix
     template_name = 'nd/fix_list.html'
+
+class PartDetail(generic.DetailView):
+    model = Part
+    template_name = 'nd/part_detail.html'
+
+class PartList(generic.ListView):
+    model = Part
+    template_name = 'nd/part_list.html'
 
 class IndexView(generic.TemplateView):
     template_name = 'nd/index.html'
