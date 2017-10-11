@@ -17,13 +17,11 @@ count = 0
 
 for id_node in soup.find_all(has_regex(id_regex)):
     if id_node.parent.name == 'caption':
-        fig_node = id_node.find_parent('figure').find_previous_sibling('figure')
+        fig_node = id_node.find_parent('figure')
     else:
         fig_node = id_node.find_previous_sibling('figure')
         if not fig_node and id_node.parent.name == 'div':
             fig_node = id_node.parent.find_previous_sibling('div').find_all('figure')[-1]
-    if not fig_node:
-        fig_node = id_node.find_parent('figure')
     name = id_regex.search(id_node.string).groups(1)[0].strip()
     image = re.sub('^.*_img_', '', fig_node.imagedata['src'])
     cur.execute('INSERT OR IGNORE INTO nd_part (name, image) VALUES (?, ?)', (name, image))
