@@ -20,12 +20,16 @@
                 <tr>
                     <th>Image</th>
                 </tr>
+                {% load static %}
                 {% for part in object_list %}
                 <tr>
-                    <td><a href="{% url 'nd:part_detail' part.id %}">{{ part.name }}</a></td>
                     <td>
-                        {% load static %}
-                        <img style="max-width: 200px" src="{% static 'nd/'|add:part.image %}"/>
+                        <a href="{% url 'nd:part_detail' part.id %}">{{ part.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'nd:part_detail' part.id %}">
+                            <img style="max-width: 10em" src="{% static 'nd/'|add:part.image %}"/>
+                        </a>
                     </td>
                 </tr>
                 {% endfor %}
