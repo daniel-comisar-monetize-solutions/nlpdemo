@@ -17,7 +17,7 @@ cur = conn.cursor()
 counts = {}
 
 for dtc_node in soup.find_all(has_regex(dtc_regex)):
-    (code, bmw_code) = dtc_regex.search(dtc_node.string).groups()
+    code = dtc_regex.search(dtc_node.string).groups(1)[0]
     fix_root = dtc_node.find_next_sibling(has_regex(action_regex))
     if not fix_root:
         fix_root = dtc_node.parent.find_next_sibling('div').find(has_regex(action_regex))
@@ -25,8 +25,6 @@ for dtc_node in soup.find_all(has_regex(dtc_regex)):
             continue
 
     fix_list = extract(fix_root, fault_regex)
-    cur.execute('INSERT OR IGNORE INTO nd_dtc (code, bmw_code) VALUES (?, ?)', (code, bmw_code))
-    counts['dtc'] = counts.get('dtc', 0) + cur.rowcount
     for fix in fix_list:
         cur.execute('INSERT OR IGNORE INTO nd_fix (text) VALUES (?)', (fix,))
         counts['fix'] = counts.get('fix', 0) + cur.rowcount
@@ -35,6 +33,6 @@ for dtc_node in soup.find_all(has_regex(dtc_regex)):
         cur.execute('INSERT OR IGNORE INTO nd_dtc_fixes (dtc_id, fix_id) VALUES (?, ?)', (code, fix_id))
         counts['both'] = counts.get('both', 0) + cur.rowcount
 
-print('{} codes, {} fixes, and {} relations added'.format(counts.get('dtc', 0), counts.get('fix', 0), counts.get('both', 0)))
+print('{} fixes and {} relations added'.format(counts.get('fix', 0), counts.get('both', 0)))
 conn.commit()
 conn.close()

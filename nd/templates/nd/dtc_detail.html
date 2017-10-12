@@ -13,19 +13,27 @@
             <a href="{% url 'nd:index' %}" class="btn btn-info" role="button">Home</a>
             <br/>
             <br/>
-            <h1>DTC {{ object.code }} - BMW DTC {{ object.bmw_code }}</h1>
+            <h1>{{ object.name }}</h1>
             <br/>
-            <h3>Possible Causes</h3>
+            <h2>DTC {{ object.code }} - BMW DTC {{ object.bmw_code }}</h2>
+            <br/>
+            <h3>Fault Description: {{ object.fault }}</h3>
+            <br/>
+            <h4>Possible Causes</h4>
             <ul>
                 {% for cause in object.causes.all %}
                 <li><a href="{% url 'nd:cause_detail' cause.id %}">{{ cause }}</a></li>
+                {% empty %}
+                <li>No possible causes found</li>
                 {% endfor %}
             </ul>
             <br/>
-            <h3>Repair Procedures</h3>
+            <h4>Repair Procedures</h4>
             <ul>
                 {% for fix in object.fixes.all %}
                 <li><a href="{% url 'nd:fix_detail' fix.id %}">{{ fix }}</a></li>
+                {% empty %}
+                <li>No repair procedures found</li>
                 {% endfor %}
             </ul>
         </div>

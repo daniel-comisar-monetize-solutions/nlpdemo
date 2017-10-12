@@ -9,7 +9,9 @@ class DTC(models.Model):
     bmw_code = models.CharField(max_length=20)
     causes = models.ManyToManyField(Cause)
     code = models.CharField(max_length=20, primary_key=True)
+    fault = models.CharField(max_length=200)
     fixes = models.ManyToManyField('Fix')
+    name = models.CharField(max_length=200)
     def __str__(self):
         return '{}'.format(self.code)
 

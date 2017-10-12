@@ -17,6 +17,7 @@
             {% if object_list %}
             <table class="table">
                 <tr>
+                    <th>Name</th>
                     <th>DTC</th>
                     <th>BMW DTC</th>
                     <th>Causes</th>
@@ -24,10 +25,11 @@
                 </tr>
                 {% for obj in object_list %}
                 <tr>
+                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.name|truncatechars:50 }}</a></td>
                     <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.code }}</a></td>
                     <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.bmw_code }}</a></td>
-                    <td>{{ obj.causes.all|length }}</td>
-                    <td>{{ obj.fixes.all|length }}</td>
+                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.causes.all|length }}</a></td>
+                    <td><a href="{% url 'nd:dtc_detail' obj.code %}">{{ obj.fixes.all|length }}</a></td>
                 </tr>
                 {% endfor %}
             </table>

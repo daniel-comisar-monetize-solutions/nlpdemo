@@ -21,7 +21,7 @@ class DtcList(generic.ListView):
     def get_queryset(self):
         query = self.request.GET.get('q')
         if query:
-            return DTC.objects.filter(Q(code__icontains=query) | Q(bmw_code__icontains=query))
+            return DTC.objects.filter(Q(bmw_code__icontains=query) | Q(code__icontains=query) | Q(fault__icontains=query) | Q(name__icontains=query))
         else:
             return DTC.objects.all()
 
