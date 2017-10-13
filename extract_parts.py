@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from extract_utils import has_regex
+from extract_utils import has_regex, id_regex
 import bs4
 import re
 import sqlite3
@@ -9,7 +9,6 @@ import sys
 if len(sys.argv) != 2:
     exit('Usage: {} <input file>'.format(sys.argv[0]))
 
-id_regex = re.compile('^Fig\. \d+: Identifying (.*)Courtesy')
 soup = bs4.BeautifulSoup(open(sys.argv[1], 'r'), 'html.parser')
 conn = sqlite3.connect('db.sqlite3')
 cur = conn.cursor()

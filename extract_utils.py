@@ -1,7 +1,8 @@
 import re
 
-# last part: match all characters until the string 'Information' or end of line
+# last part: match all characters until given string or end
 dtc_regex = re.compile('DTC (\w{5}).*BMW DTC (\w{6}):?((?:(?!Information).)*)')
+id_regex = re.compile('^Fig\. \d+: Identifying ((?:(?!Courtesy).)*)')
 
 def has_regex(regex):
     return lambda tag: regex.search(tag.string) if tag.string else False
