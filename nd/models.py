@@ -30,6 +30,8 @@ class PartLabel(models.Model):
     label = models.CharField(max_length=20)
     part = models.ForeignKey(Part)
     text = models.CharField(max_length=200)
+    class Meta:
+        unique_together = ('label', 'part', 'text')
     def __str__(self):
         return '{}'.format(self.text)
 
