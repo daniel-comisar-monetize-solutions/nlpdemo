@@ -36,14 +36,23 @@ class PartLabel(models.Model):
         return '{}'.format(self.text)
 
 class Phrase(models.Model):
-    file = models.CharField(max_length=200)
-    page = models.IntegerField()
-    text = models.CharField(max_length=200)
+    count = models.IntegerField(db_index=True)
+    sentences = models.ManyToManyField('Sentence', related_name='phrases')
+    text = models.CharField(max_length=200, unique=True, db_index=True)
     def __str__(self):
         return '{}'.format(self.text)
 
 class ReferenceFix(models.Model):
     code = models.CharField(max_length=40, primary_key=True)
     text = models.CharField(max_length=400)
+    def __str__(self):
+        return '{}'.format(self.text)
+
+class Sentence(models.Model):
+    filename = models.CharField(max_length=200, db_index=True)
+    page = models.IntegerField(db_index=True)
+    text = models.CharField(max_length=2000, db_index=True)
+    class Meta:
+        unique_together = (("filename", "page", "text"),)
     def __str__(self):
         return '{}'.format(self.text)

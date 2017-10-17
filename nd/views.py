@@ -52,7 +52,11 @@ class PartList(generic.ListView):
 class IndexView(generic.TemplateView):
     template_name = 'nd/index.html'
 
-class PhraseView(generic.ListView):
-    template_name = 'nd/phrase.html'
-    def get_queryset(self):
-        return Phrase.objects.raw('SELECT *, COUNT(*) AS count FROM nd_phrase GROUP BY text, file, page ORDER BY count DESC')
+class PhraseDetail(generic.DetailView):
+    model = Phrase
+    template_name = 'nd/phrase_detail.html'
+
+class PhraseList(generic.ListView):
+    model = Phrase
+    ordering = ['-count']
+    template_name = 'nd/phrase_list.html'

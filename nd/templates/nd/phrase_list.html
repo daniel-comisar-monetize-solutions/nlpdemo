@@ -18,16 +18,12 @@
             <table class="table">
                 <tr>
                     <th>Text</th>
-                    <th>Page</th>
                     <th>Count</th>
-                    <th>File</th>
                 </tr>
                 {% for phrase in object_list %}
                 <tr>
-                    <td>{{ phrase.text }}</td>
-                    <td>{{ phrase.page }}</td>
-                    <td>{{ phrase.count }} </td>
-                    <td><a href="http://www.customtacos.com/tech.old/files/05FSM/data/ileaf/06toyrm/06toypdf/06rmsrc/rm2006ta/{{ phrase.file }}#page={{ phrase.page }}">{{ phrase.file }}</a></td>
+                    <td><a href="{% url 'nd:phrase_detail' phrase.id %}">{{ phrase.text }}</a></td>
+                    <td><a href="{% url 'nd:phrase_detail' phrase.id %}">{{ phrase.count }}</a></td>
                 </tr>
                 {% endfor %}
             </table>
