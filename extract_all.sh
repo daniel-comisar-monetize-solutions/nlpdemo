@@ -6,7 +6,6 @@ if [ "$#" -ne 3 ]; then
 fi
 
 ./extract_dtc.py $1
-./extract_fixes.py $1
 ./extract_parts.py $1
 ./extract_indexes.py $2
 ./extract_numbers.py $2
